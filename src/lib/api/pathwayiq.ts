@@ -382,7 +382,7 @@ const COUNTRY_DATABASE: Record<string, {
 // --- SERVER FUNCTIONS ---
 
 export const runAssessment = createServerFn({ method: 'POST' })
-  .inputValidator(ProfileSchema)
+  .validator(ProfileSchema)
   .handler(async ({ data }): Promise<AssessmentResult> => {
 
     // 1. BUILD PROFILE
@@ -804,7 +804,7 @@ export const runAssessment = createServerFn({ method: 'POST' })
 // --- AI ROADMAP (Azure OpenAI) ---
 
 export const generateRoadmap = createServerFn({ method: 'POST' })
-  .inputValidator(z.object({
+  .validator(z.object({
     profile: ProfileSchema,
     career: z.string(),
     country: z.string(),
@@ -890,7 +890,7 @@ BUDGET BREAKDOWN:
 // --- EMAIL WAITLIST ---
 
 export const joinWaitlist = createServerFn({ method: 'POST' })
-  .inputValidator(z.object({
+  .validator(z.object({
     email: z.string().email(),
     degree: z.string().optional(),
     country: z.string().optional(),
